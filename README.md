@@ -16,9 +16,20 @@
 
 ## Introduction
 
+As a Machine learning engineer, our tasks is to design a reliable hypothesis testing algorithm for the BIO service and to determine whether a recent advertising campaign resulted in a significant lift in brand awareness.
+
 ## Overview
 
 - Learning Outcomes
+  > Statistical Modelling
+
+> Using core data science python libraries pandas, matplotlib, seaborn, scikit-learn
+
+> ML algorithms Logistic regression, Decision Trees, XGBoost
+
+> Model management (building ML catalog contains model feature labels and training model version)
+
+> MLOps with DVC, CML, and MLFlow
 
 ## Install
 
@@ -38,6 +49,18 @@ pip install -r requirements.txt
 - No
 
 Data can be found [here at google drive](https://drive.google.com/file/d/1gJWvtl6roO7XMGLSfkMOFR3-D_yZvV63/view?usp=sharing)
+
+The data collected for this challenge has the following columns
+
+- auction_id: the unique id of the online user who has been presented the BIO.
+- experiment: which group the user belongs to - control or exposed.
+- date: the date in YYYY-MM-DD format
+- hour: the hour of the day in HH format.
+- device_make: the name of the type of device the user has e.g. Samsung
+- platform_os: the id of the OS the user has.
+- browser: the name of the browser the user uses to see the BIO questionnaire.
+- yes: 1 if the user chooses the “Yes” radio button for the BIO questionnaire.
+- no: 1 if the user chooses the “No” radio button for the BIO questionnaire.
 
 ## Notebooks
 
