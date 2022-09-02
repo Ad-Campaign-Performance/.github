@@ -91,7 +91,7 @@ The data collected for this challenge has the following columns
 
 - GitHub: [Birhanu Gebisa](https://github.com/BirhanuGebisa)
 - LinkedIn: [Birhanu Gebisa](https://www.linkedin.com/in/birhanu-gebisa2721/)
-- Website: [Birhanu Gebisa Demo Porfolio](https://github.com/BirhanuGebisa.github.io/)
+- Website: [Birhanu Gebisa Porfolio](https://github.com/BirhanuGebisa.github.io/)
 
 👤 **Genet Shanko**
 
