@@ -19,8 +19,9 @@ from mlflow_utils import fetch_logged_data
 
 # path="gdrive://1K5jndf5P6ES1AxLJj69nbVYiVrYpkIJM"
 path="data/AdSmartABdata.csv"
-repo="C:/Users/user/Desktop/TenAcademy/SmartAd_A-B_Testing_user_analysis/"
-version="V2.0"
+repo="C:/Users/user/Desktop/TenAcademy/SmartAd_A-B_Testing_user_analysis"
+version="v4"
+
 
 data_url = dvc.api.get_url(
     path=path,
