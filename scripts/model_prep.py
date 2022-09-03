@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
 
-
+#class evalution model
 class Model_Eval:
     def __init__(self) -> None:
         """
