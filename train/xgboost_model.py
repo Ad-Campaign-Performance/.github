@@ -12,17 +12,17 @@ import pandas as pd
 import os, sys
 
 path_parent = os.path.dirname(os.getcwd())
-<<<<<<< HEAD:train/xgboost_temp.py
-# os.chdir(path_parent)
-# sys.path.insert(0, path_parent+'/scripts')
-sys.path.append(os.path.abspath(os.path.join('..')))
-sys.path.insert(0,path_parent+'/scripts')
-=======
+# <<<<<<< HEAD:train/xgboost_temp.py
+# # os.chdir(path_parent)
+# # sys.path.insert(0, path_parent+'/scripts')
+# sys.path.append(os.path.abspath(os.path.join('..')))
+# sys.path.insert(0,path_parent+'/scripts')
+# =======
 os.chdir(path_parent)
 sys.path.insert(0, path_parent+'/scripts')
 import io 
 
->>>>>>> e5535fc533fb023dbd8ecefc77246f0eb094dc4e:train/xgboost_model.py
+
 from mlflow_utils import fetch_logged_data
 
 # path="gdrive://1K5jndf5P6ES1AxLJj69nbVYiVrYpkIJM"
@@ -52,14 +52,14 @@ def main():
     np.random.seed(1996)
     
     # prepare example dataset
-<<<<<<< HEAD:train/xgboost_temp.py
-    data = pd.read_csv(data_url2)
-    data = data.select_dtypes(include=np.number)
-=======
+# <<<<<<< HEAD:train/xgboost_temp.py
+#     data = pd.read_csv(data_url2)
+#     data = data.select_dtypes(include=np.number)
+# =======
     data = pd.read_csv(io.StringIO(data_url), sep=",")
     print(data)
     data.drop(columns=['Unnamed: 0', 'date', 'auction_id', 'yes', 'no'], inplace=True)
->>>>>>> e5535fc533fb023dbd8ecefc77246f0eb094dc4e:train/xgboost_model.py
+# >>>>>>> e5535fc533fb023dbd8ecefc77246f0eb094dc4e:train/xgboost_model.py
     
     #log data params
     # mlflow.log_param('data_url', data_url)
@@ -76,11 +76,11 @@ def main():
     
     # enable auto logging
     # this includes xgboost.sklearn estimators
-<<<<<<< HEAD:train/xgboost_temp.py
-    mlflow.autolog()
-=======
+# <<<<<<< HEAD:train/xgboost_temp.py
+#     mlflow.autolog()
+# =======
     # mlflow.xgboost.autolog()
->>>>>>> e5535fc533fb023dbd8ecefc77246f0eb094dc4e:train/xgboost_model.py
+# >>>>>>> e5535fc533fb023dbd8ecefc77246f0eb094dc4e:train/xgboost_model.py
 
     regressor = XGBRegressor()
     
