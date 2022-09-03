@@ -5,16 +5,25 @@ on:
       - main
 jobs:
   run:
+    permissions: write-all
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
+      # - uses: actions/setup-python@v2
       - uses: iterative/setup-cml@v1
       - name: Train model
         run:
           pip install -r requirements.txt
-          # python train.py
+          python train/logistic_reg.py
+          python train/xgboost_model.py
+          python train/randomforest.py
 
+      - name: Write CML report
+        env:
+            REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run:
+          echo "### Model Metrics" > report.md  
+          echo "### Data Visualization" >> report.md
           # cat metrics.txt >> report.md
           # cml publish plot.png --md >> report.md
           # cml send-comment report.md
