@@ -12,15 +12,16 @@ import pandas as pd
 import os, sys
 
 path_parent = os.path.dirname(os.getcwd())
-os.chdir(path_parent)
-sys.path.insert(0, path_parent+'/scripts')
-
+# os.chdir(path_parent)
+# sys.path.insert(0, path_parent+'/scripts')
+sys.path.append(os.path.abspath(os.path.join('..')))
+sys.path.insert(0,path_parent+'/scripts')
 from mlflow_utils import fetch_logged_data
 
 # path="gdrive://1K5jndf5P6ES1AxLJj69nbVYiVrYpkIJM"
 path="data/AdSmartABdata.csv"
-repo="C:/Users/user/Desktop/TenAcademy/SmartAd_A-B_Testing_user_analysis"
-version="v4"
+repo="/home/owon/Documents/10x/Week2/SmartAd_A-B_Testing_user_analysis/data"
+version="V4.0"
 
 
 data_url = dvc.api.get_url(
@@ -28,6 +29,7 @@ data_url = dvc.api.get_url(
     repo=repo,
     rev=version,
 )
+data_url2 = '../data/AdSmartABdata.csv'
 
 mlflow.set_experiment('ab_xgboost')
 
@@ -43,7 +45,8 @@ def main():
     np.random.seed(1996)
     
     # prepare example dataset
-    data = pd.read_csv(data_url)
+    data = pd.read_csv(data_url2)
+    data = data.select_dtypes(include=np.number)
     
     #log data params
     mlflow.log_param('data_url', data_url)
@@ -53,14 +56,14 @@ def main():
     
     train, test = train_test_split(data, test_size=0.30)
     
-    x_train = train.drop(['response'], axis=1)
-    y_train = train[['response']]
-    X_test = test.drop(['response'], axis=1)
-    y_test = test[['response']]
+    x_train = train.drop(['yes'], axis=1)
+    y_train = train[['yes']]
+    X_test = test.drop(['yes'], axis=1)
+    y_test = test[['yes']]
     
     # enable auto logging
     # this includes xgboost.sklearn estimators
-    mlflow.xgboost.autolog()
+    mlflow.autolog()
 
     regressor = xgb.XGBRegressor(n_estimators=20, reg_lambda=1, gamma=0, max_depth=3)
     
