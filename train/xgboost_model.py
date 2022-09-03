@@ -1,7 +1,7 @@
 from pprint import pprint
 import dvc.api
 
-import xgboost as xgb
+from xgboost import XGBRegressor
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error, mean_absolute_error, mean_squared_error, r2_score
 
@@ -14,6 +14,7 @@ import os, sys
 path_parent = os.path.dirname(os.getcwd())
 os.chdir(path_parent)
 sys.path.insert(0, path_parent+'/scripts')
+import io 
 
 from mlflow_utils import fetch_logged_data
 
@@ -23,7 +24,7 @@ repo="C:/Users/user/Desktop/TenAcademy/SmartAd_A-B_Testing_user_analysis"
 version="v4"
 
 
-data_url = dvc.api.get_url(
+data_url = dvc.api.read(
     path=path,
     repo=repo,
     rev=version,
@@ -43,15 +44,17 @@ def main():
     np.random.seed(1996)
     
     # prepare example dataset
-    data = pd.read_csv(data_url)
+    data = pd.read_csv(io.StringIO(data_url), sep=",")
+    print(data)
+    data.drop(columns=['Unnamed: 0', 'date', 'auction_id', 'yes', 'no'], inplace=True)
     
     #log data params
-    mlflow.log_param('data_url', data_url)
+    # mlflow.log_param('data_url', data_url)
     mlflow.log_param('data_version', version)
     mlflow.log_param('input_rows', data.shape[0])
     mlflow.log_param('input_colums', data.shape[1])
     
-    train, test = train_test_split(data, test_size=0.30)
+    train, test = train_test_split(data)
     
     x_train = train.drop(['response'], axis=1)
     y_train = train[['response']]
@@ -60,9 +63,9 @@ def main():
     
     # enable auto logging
     # this includes xgboost.sklearn estimators
-    mlflow.xgboost.autolog()
+    # mlflow.xgboost.autolog()
 
-    regressor = xgb.XGBRegressor(n_estimators=20, reg_lambda=1, gamma=0, max_depth=3)
+    regressor = XGBRegressor()
     
     regressor.fit(x_train, y_train, eval_set=[(X_test, y_test)])
     
