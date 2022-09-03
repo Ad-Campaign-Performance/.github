@@ -17,7 +17,7 @@ ABT = ABTesting()
 class PlottingFunctions:
     def _init_(self):
         """
-        Initializing PlottingFunctions class
+        Initializing Plotting Functions class
         """
         
     def plot_norm_dist(self, ax, mu, std, with_CI=False, sig_level=0.05, label=None):

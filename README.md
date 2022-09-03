@@ -91,13 +91,13 @@ The data collected for this challenge has the following columns
 
 - GitHub: [Birhanu Gebisa](https://github.com/BirhanuGebisa)
 - LinkedIn: [Birhanu Gebisa](https://www.linkedin.com/in/birhanu-gebisa2721/)
-- Website: [Birhanu Gebisa Demo Porfolio](https://github.com/BirhanuGebisa.github.io/)
+- Website: [Birhanu Gebisa Porfolio](https://github.com/BirhanuGebisa.github.io/)
 
 👤 **Genet Shanko**
 
-- GitHub: [Genet Shanko](https://github.com/AntenehTilaye)
-- LinkedIn: [Genet Shanko](https://www.linkedin.com/in/anteneh-tilaye-bb6770149/)
-- Website: [Genet Shanko Demo Porfolio](https://antenehtilaye.github.io/)
+- GitHub: [Genet Shanko](https://github.com/gshanko125298))
+- LinkedIn: [Genet Shanko](https://www.linkedin.com/in/genet-dekebo-24b34658/)
+- Website: [Genet Shanko Demo Porfolio](https://github.com/Ad-Campaign-Performance/SmartAd_A-B_Testing_user_analysis/pull/11)
 
 👤 **Yishak Tadele**
 
