@@ -20,7 +20,7 @@ from mlflow_utils import fetch_logged_data
 
 path="gdrive://1K5jndf5P6ES1AxLJj69nbVYiVrYpkIJM"
 repo="../"
-version="v4"
+version="V2.0"
 
 data_url = dvc.api.get_url(
     path=path,
