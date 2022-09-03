@@ -1,0 +1,4 @@
+artifact_location: file:///C:/Users/user/Desktop/TenAcademy/SmartAd_A-B_Testing_user_analysis/mlruns/1
+experiment_id: '1'
+lifecycle_stage: active
+name: ab_xgboost
