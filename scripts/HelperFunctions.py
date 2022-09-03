@@ -12,7 +12,7 @@ def hypergeom(k, K, n, N):
 
 
 def fisher_prob(m):
-    """Probability of a given observed contingency table according to Fisher's exact test."""
+    """Probability of a given observed contingency table based on Fisher's exact test."""
     ((a, b), (c ,d)) = m
     k = a
     K = a+b
