@@ -17,8 +17,9 @@ sys.path.insert(0, path_parent+'/scripts')
 
 from mlflow_utils import fetch_logged_data
 
-path="gdrive://1K5jndf5P6ES1AxLJj69nbVYiVrYpkIJM"
-repo="C:/Users/user/Desktop/TenAcademy/SmartAd_A-B_Testing_user_analysis"
+# path="gdrive://1K5jndf5P6ES1AxLJj69nbVYiVrYpkIJM"
+path="data/AdSmartABdata.csv"
+repo="C:/Users/user/Desktop/TenAcademy/SmartAd_A-B_Testing_user_analysis/"
 version="v4"
 
 data_url = dvc.api.get_url(
