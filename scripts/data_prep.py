@@ -76,7 +76,7 @@ class Clean_df:
 
     def map_brands(self, df: pd.DataFrame) -> pd.DataFrame:
         """
-        This maps the device make column into known and unknowncolumns
+        The following maps shows the device make column into known and unknowncolumns
         """
         known_brands = ['samsung', 'htc', 'nokia',
                         'moto', 'lg', 'oneplus',
@@ -93,7 +93,7 @@ class Clean_df:
 
     def collect_reponse(self, df: pd.DataFrame):
         """
-        This method removes the yes and no columns by merging their result into 'response'
+        The following method removes the yes and no columns by merging their result into 'response'
         column
         """
         df['response'] = df['yes']
@@ -139,3 +139,4 @@ class Clean_df:
         df = df.join(df_temp)
         df.reset_index(drop=True, inplace=True)
         return df
+    
