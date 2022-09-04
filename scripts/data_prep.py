@@ -34,7 +34,7 @@ class Clean_df:
         for col in col_names:
             df[col+'_encoded'] = le.fit_transform(df[col])
 
-        df.drop(columns=col_names, axis=1,inplace=True)
+        df.drop(columns=col_names, axis=1, inplace=True)
         return df
 
     def one_hot_encode(self, df: pd.DataFrame, col_names: list) -> pd.DataFrame:
@@ -106,7 +106,7 @@ class Clean_df:
         """
         if not col_names:
             col_names = ['Unnamed: 0', 'auction_id',
-                         'date',  'yes', 'no','experiment_encoded']
+                         'date',  'yes', 'no']
         for col in col_names:
             if col in df.columns:
                 df.drop(columns=col, inplace=True)
@@ -116,16 +116,26 @@ class Clean_df:
         """
         performs a pipiline of cleaning methods in the given dataframe
         """
+
+        cat_cols = [x for x in df.columns if df[x].dtype == 'object']
+        cat_cols.remove('auction_id')
+        ohe_cols = [col for col in cat_cols if df[col].nunique(
+        ) <= 10 and df[col].nunique() > 2]
+        le_cols = [col for col in cat_cols if not col in ohe_cols]
+        
+        
         df = self.drop_null_entries(df)
         df = self.map_brands(df)
-        df = self.label_encode(df, col_names=['experiment'])
-        df = self.one_hot_encode(df, col_names=['device_make'])
-        df_temp = df[['yes','experiment_encoded']]
-        df = self.drop_unwanted_cols(df)
+        df = self.label_encode(df, col_names=le_cols)
+        df = self.one_hot_encode(df, col_names=ohe_cols)
+        # le_cols = [col+'_encoded' for col in le_cols ]
+        # le_cols.append('yes')
         
-        df = self.minmax_scaling(df)
-        df = self.normalizer(df)
+        df_temp = df['yes']
+        df = self.drop_unwanted_cols(df)
+
+        # df = self.minmax_scaling(df)
+        # df = self.normalizer(df)
         df = df.join(df_temp)
         df.reset_index(drop=True, inplace=True)
         return df
-    
