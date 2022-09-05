@@ -27,8 +27,8 @@ from mlflow_utils import fetch_logged_data
 
 # path="gdrive://1K5jndf5P6ES1AxLJj69nbVYiVrYpkIJM"
 path="data/AdSmartABdata.csv"
-repo="/home/owon/Documents/10x/Week2/SmartAd_A-B_Testing_user_analysis/data"
-version="V4.0"
+repo="C:/Users/user/Desktop/TenAcademy/SmartAd_A-B_Testing_user_analysis"
+version="v5"
 
 
 data_url = dvc.api.read(
@@ -36,7 +36,6 @@ data_url = dvc.api.read(
     repo=repo,
     rev=version,
 )
-data_url2 = '../data/AdSmartABdata.csv'
 
 mlflow.set_experiment('ab_xgboost')
 
@@ -51,16 +50,12 @@ def main():
     
     np.random.seed(1996)
     
-    # prepare example dataset
-# <<<<<<< HEAD:train/xgboost_temp.py
-#     data = pd.read_csv(data_url2)
-#     data = data.select_dtypes(include=np.number)
-# =======
+
     data = pd.read_csv(io.StringIO(data_url), sep=",")
-    print(data)
+   
     data.drop(columns=['Unnamed: 0', 'date', 'auction_id', 'yes', 'no'], inplace=True)
-# >>>>>>> e5535fc533fb023dbd8ecefc77246f0eb094dc4e:train/xgboost_model.py
-    
+    data.drop(data[data['response'] == 2].index, inplace = True)
+    print(data)
     #log data params
     # mlflow.log_param('data_url', data_url)
     mlflow.log_param('data_version', version)
@@ -69,18 +64,13 @@ def main():
     
     train, test = train_test_split(data)
     
-    x_train = train.drop(['yes'], axis=1)
-    y_train = train[['yes']]
-    X_test = test.drop(['yes'], axis=1)
-    y_test = test[['yes']]
+    x_train = train.drop(['response'], axis=1)
+    y_train = train[['response']]
+    X_test = test.drop(['response'], axis=1)
+    y_test = test[['response']]
     
-    # enable auto logging
-    # this includes xgboost.sklearn estimators
-# <<<<<<< HEAD:train/xgboost_temp.py
-#     mlflow.autolog()
-# =======
-    # mlflow.xgboost.autolog()
-# >>>>>>> e5535fc533fb023dbd8ecefc77246f0eb094dc4e:train/xgboost_model.py
+
+    mlflow.xgboost.autolog()
 
     regressor = XGBRegressor()
     
@@ -89,6 +79,11 @@ def main():
     y_pred = regressor.predict(X_test)
     
     rmse, mae, r2 = eval_metrics(y_test, y_pred)
+    
+    print("\n---------- Metrics ----------")
+    print("RMSE: ", rmse, '\n')
+    print("MAE: ", mae, '\n')
+    print("R2: ", r2, '\n')
     
     run_id = mlflow.last_active_run().info.run_id
     print("Logged data and model in run {}".format(run_id))

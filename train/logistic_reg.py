@@ -45,10 +45,11 @@ def main():
     
     #log data params
     # mlflow.log_param('data_url', data_url)
+    
+    mlflow.log_param('version', version)
     mlflow.log_param('data_version', version)
     mlflow.log_param('input_rows', data.shape[0])
     mlflow.log_param('input_colums', data.shape[1])
-    
     
     train, test = train_test_split(data)
     
