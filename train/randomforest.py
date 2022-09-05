@@ -28,7 +28,7 @@ data_url = dvc.api.read(
     rev=version,
 )
 
-mlflow.set_experiment('ab_logistic')
+mlflow.set_experiment('ab_randomforest')
 
 # def eval_metrics(actual, pred):
 #     rmse = np.sqrt(mean_squared_error(actual, pred))

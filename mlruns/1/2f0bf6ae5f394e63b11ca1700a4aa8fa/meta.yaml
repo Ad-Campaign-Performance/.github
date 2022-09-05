@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/user/Desktop/TenAcademy/SmartAd_A-B_Testing_user_analysis/mlruns/1/2f0bf6ae5f394e63b11ca1700a4aa8fa/artifacts
+end_time: 1662281056792
+entry_point_name: ''
+experiment_id: '1'
+lifecycle_stage: active
+name: ''
+run_id: 2f0bf6ae5f394e63b11ca1700a4aa8fa
+run_uuid: 2f0bf6ae5f394e63b11ca1700a4aa8fa
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1662280954671
+status: 3
+tags: []
+user_id: user
