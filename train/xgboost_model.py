@@ -70,7 +70,7 @@ def main():
     y_test = test[['response']]
     
 
-    # mlflow.xgboost.autolog()
+    mlflow.xgboost.autolog()
 
     regressor = XGBRegressor()
     

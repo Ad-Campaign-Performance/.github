@@ -20,7 +20,7 @@ sys.path.insert(0, path_parent+'/scripts')
 
 path="data/AdSmartABdata.csv"
 repo="C:/Users/user/Desktop/TenAcademy/SmartAd_A-B_Testing_user_analysis"
-version="v5"
+version="v4"
 
 data_url = dvc.api.read(
     path=path,
@@ -50,7 +50,6 @@ def main():
     mlflow.log_param('data_version', version)
     mlflow.log_param('input_rows', data.shape[0])
     mlflow.log_param('input_colums', data.shape[1])
-    
     
     train, test = train_test_split(data)
     
